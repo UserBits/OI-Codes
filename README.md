@@ -1,2 +1,3 @@
-# OI-Codes
-All my source files in OI
+# 蒟蒻在信息学中的所有代码
+欢迎下载、访问，提出改进意见；
+请勿抄袭代码，谢谢。
