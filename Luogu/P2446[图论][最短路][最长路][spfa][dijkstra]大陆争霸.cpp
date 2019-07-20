@@ -30,7 +30,7 @@ int headg[N],totg;
 struct qnode{
     int key,len;
     friend bool operator < (qnode x,qnode y){
-        return x.len<y.len;
+        return x.len>y.len;
     }
 };
 int dis[N],into[N],ind[N],arrive[N];
@@ -56,7 +56,7 @@ void dijkstra(int s){
                 arrive[v]=dis[u]+edge[k].val;
                 if(!ind[v]){
                     dis[v]=max(into[v],arrive[v]);
-                    q.push((qnode){v,-dis[v]});
+                    q.push((qnode){v,dis[v]});
                 }
             }
         }
@@ -66,7 +66,7 @@ void dijkstra(int s){
             ind[v]--;
             if(!ind[v]){
                 dis[v]=max(into[v],arrive[v]);
-                q.push((qnode){v,-dis[v]});
+                q.push((qnode){v,dis[v]});
             }
         }
     }
