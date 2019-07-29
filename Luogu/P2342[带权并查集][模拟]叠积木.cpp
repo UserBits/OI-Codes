@@ -20,11 +20,6 @@ inline void readc(char &c){
 		c = gc();
 }
 
-template<typename abt>
-inline abt ab(abt x){
-	return x > 0 ? x : -x;
-}
-
 const int N = 30001;
 int f[N], dis[N], sum[N];
 
@@ -34,7 +29,6 @@ int getf(int x){
 	int k = f[x];
 	f[x] = getf(f[x]);
 	dis[x] += dis[k];
-	sum[x] = sum[f[x]];
 	return f[x];
 }
 
@@ -44,16 +38,8 @@ void merge(int x, int y){
 	if(x == y)
 		return;
 	f[x] = y;
-	dis[x] = dis[y] + sum[y];
+	dis[x] = sum[y];
 	sum[y] += sum[x];
-	sum[x] = sum[y];
-}
-
-int query(int x, int y){
-	int u = getf(x), v = getf(y);
-	if(u != v)
-		return -1;
-	return ab(dis[x] - dis[y]) - 1;
 }
 
 int main(){
@@ -67,11 +53,15 @@ int main(){
 	char c;
 	while(t--){
 		readc(c);
-		readn(x), readn(y);
-		if(c == 'M')
+		if(c == 'M'){
+			readn(x), readn(y);
 			merge(x, y);
-		else
-			printf("%d\n", query(x, y));
+		}
+		else{
+			readn(x);
+			getf(x);
+			printf("%d\n", dis[x]);
+		}
 	}
 	return 0;
 }
