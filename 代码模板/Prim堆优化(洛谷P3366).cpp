@@ -1,4 +1,4 @@
-//Prim算法堆优化
+//Prim脣茫路篓露脩脫脜禄炉
 #include <cstdio>
 #include <algorithm>
 #include <cstring>
